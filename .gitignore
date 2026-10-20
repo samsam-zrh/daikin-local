@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+app/known-devices.json
+.build/
+DerivedData/
+xcuserdata/
+*.xcuserstate
+*.ipa
+*.mobileprovision
+*.p12

@@ -1,0 +1,39 @@
+{
+  "192.168.1.101": {
+    "/common/basic_info": {
+      "ret": "OK",
+      "type": "aircon",
+      "name": "Pièce de test",
+      "ver": "test"
+    },
+    "/aircon/get_model_info": {
+      "ret": "OK",
+      "model": "TEST",
+      "temp": "1",
+      "en_frate": "1",
+      "en_fdir": "1"
+    },
+    "/aircon/get_sensor_info": {
+      "ret": "OK",
+      "htemp": "20.0",
+      "otemp": "14.0",
+      "err": "0"
+    },
+    "/aircon/get_control_info": {
+      "ret": "OK",
+      "pow": "1",
+      "mode": "3",
+      "stemp": "21.5",
+      "shum": "0",
+      "f_rate": "5",
+      "f_dir": "3",
+      "dt2": "M",
+      "dh2": "50",
+      "dfr2": "5",
+      "dt4": "25.0",
+      "dh4": "0",
+      "dfr4": "6",
+      "dfr6": "5"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f5f8fa">
+  <title>Mon climat — Daikin local</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23008bc2'/%3E%3Cpath d='M7 12c8-8 18 8 26 0M7 20c8-8 18 8 26 0M7 28c8-8 18 8 26 0' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Aller au contenu</a>
+  <aside class="sidebar" aria-label="Navigation principale">
+    <a class="brand" href="#maison" aria-label="Mon climat, accueil"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M7 12c8-8 18 8 26 0M7 20c8-8 18 8 26 0M7 28c8-8 18 8 26 0"/></svg><span>Mon climat</span></a>
+    <nav><button class="nav-item active" data-page="maison" aria-current="page"><span data-icon="home"></span><span>Maison</span></button><button class="nav-item" data-page="connexion"><span data-icon="wifi"></span><span>Connexion</span></button></nav>
+    <div class="sidebar-bottom"><span class="local-dot"></span><span>À la maison<br><small>Connexion locale</small></span></div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar"><span class="app-name">Daikin local <span class="version">Personnel</span></span><button class="icon-button" id="about-button" title="À propos de l’application" aria-label="À propos de l’application"><span data-icon="info"></span></button></header>
+    <main id="main" tabindex="-1">
+      <section id="page-maison">
+        <div class="page-heading"><div><p class="eyebrow">Votre maison</p><h1>Votre climat,<br class="mobile-break"> simplement.</h1><p class="intro">Un espace confortable, pièce par pièce.</p></div><button id="refresh-button" class="button button-secondary"><span data-icon="refresh"></span><span>Actualiser</span></button></div>
+        <div class="notice" id="global-notice" role="status" aria-live="polite" hidden></div>
+        <div class="rooms-heading"><h2>Vos pièces</h2><span id="device-summary">Recherche des climatiseurs…</span></div>
+        <div class="room-grid" id="room-grid" aria-label="Choisir une pièce"><div class="room-skeleton"></div><div class="room-skeleton"></div><div class="room-skeleton"></div></div>
+        <div class="empty-state" id="empty-state" hidden><span data-icon="wifi"></span><h2>Connectons votre climatiseur</h2><p>Votre Mac et votre clim doivent être connectés au même réseau Wi-Fi.</p><button class="button button-primary" data-go-connection>Ouvrir la connexion</button></div>
+        <section class="climate-panel" id="climate-panel" hidden aria-labelledby="selected-room-name">
+          <div class="panel-topline"><div><span class="section-caption">Votre pièce</span><h2 id="selected-room-name"></h2></div><div class="power-group"><span id="power-label">Arrêté</span><button id="power-button" class="power-button" aria-label="Allumer le climatiseur" aria-pressed="false"><span data-icon="power"></span></button></div></div>
+          <div class="panel-content">
+            <div class="thermostat-area"><div class="thermostat" id="thermostat"><svg class="dial-track" viewBox="0 0 300 300" aria-hidden="true"><circle cx="150" cy="150" r="132"/><circle id="dial-progress" class="dial-progress" cx="150" cy="150" r="132"/></svg><div class="dial-center"><span class="dial-caption" id="target-caption">Température souhaitée</span><div class="target-value"><span id="target-value">—</span><span class="degree">°</span></div><span id="dial-mode" class="dial-mode"></span></div></div>
+              <div class="temperature-stepper"><button id="temperature-minus" class="step-button" aria-label="Baisser la température de 0,5 degré"><span data-icon="minus"></span></button><span id="target-hint">Par pas de 0,5 °C</span><button id="temperature-plus" class="step-button" aria-label="Augmenter la température de 0,5 degré"><span data-icon="plus"></span></button></div>
+              <div class="measurements"><div><span data-icon="thermometer"></span><span>Dans la pièce<strong id="room-temperature">—</strong></span></div><div><span data-icon="outdoor"></span><span>À l’extérieur<strong id="outdoor-temperature">—</strong></span></div></div>
+            </div>
+            <div class="settings-area"><div class="setting-block"><h3>Mode de fonctionnement</h3><div id="mode-options" class="mode-options" role="group" aria-label="Mode de fonctionnement"></div></div>
+              <div class="setting-row"><label for="fan-select"><span class="setting-icon" data-icon="fan"></span><span>Ventilation<small>La vitesse de l’air</small></span></label><select id="fan-select"><option value="auto">Automatique</option><option value="quiet">Silencieuse</option><option value="1">Vitesse 1</option><option value="2">Vitesse 2</option><option value="3">Vitesse 3</option><option value="4">Vitesse 4</option><option value="5">Vitesse 5</option></select></div>
+              <div class="setting-row"><label for="swing-select"><span class="setting-icon" data-icon="airflow"></span><span>Orientation<small>Le mouvement des volets</small></span></label><select id="swing-select"><option value="off">Fixe</option><option value="vertical">Verticale</option><option value="horizontal">Horizontale</option><option value="both">Les deux axes</option></select></div>
+              <div class="apply-area"><p id="draft-status">Les réglages actuels de votre clim.</p><button class="button button-primary" id="apply-button" disabled>Appliquer les réglages<span data-icon="check"></span></button><p id="control-status" class="control-status" role="status" aria-live="polite"></p></div>
+            </div>
+          </div>
+          <footer class="panel-footer"><span><span class="status-dot" id="device-status-dot"></span><span id="device-status">Lecture en cours</span></span><span id="observed-time"></span></footer>
+        </section>
+        <p class="quiet-footer"><span data-icon="shield"></span>Vos commandes passent directement par votre réseau local.</p>
+      </section>
+      <section id="page-connexion" hidden>
+        <div class="page-heading"><div><p class="eyebrow">Votre réseau</p><h1>Tout commence<br class="mobile-break"> à la maison.</h1><p class="intro">Retrouvez vos climatiseurs sur le même réseau que ce Mac.</p></div></div>
+        <div class="connection-layout"><section class="connection-card"><span class="connection-large-icon" data-icon="wifi"></span><h2>Climatiseurs à proximité</h2><p>La recherche interroge les appareils Daikin sur votre réseau local. Elle ne modifie aucun réglage.</p><button id="discover-button" class="button button-primary"><span data-icon="search"></span>Rechercher les climatiseurs</button><p id="discover-status" class="control-status" role="status"></p><div id="connection-device-list" class="connection-device-list"></div></section>
+          <section class="connection-card"><h2>Ajouter une adresse IP</h2><p>Si votre clim n’apparaît pas, retrouvez son adresse dans la liste des appareils de votre box Internet.</p><form id="connect-form"><label for="host-input">Adresse IP locale</label><div class="input-action"><input id="host-input" name="host" type="text" inputmode="decimal" placeholder="192.168.1.20" autocomplete="off" required><button class="button button-secondary" id="connect-button" type="submit">Connecter</button></div><p id="connect-status" class="control-status" role="status"></p></form><div class="connection-tip"><span data-icon="info"></span><p>Une première configuration Wi-Fi peut être nécessaire avec l’application officielle Daikin. Cette application utilise les appareils déjà accessibles sur le réseau.</p></div></section></div>
+        <div class="privacy-line"><span data-icon="shield"></span><p>Aucun compte Daikin requis pour la connexion locale prise en charge. Aucun mot de passe Wi-Fi n’est enregistré ici.</p></div>
+      </section>
+    </main>
+  </div>
+  <dialog id="about-dialog"><button id="close-dialog" class="icon-button dialog-close" aria-label="Fermer"><span data-icon="close"></span></button><span class="connection-large-icon" data-icon="airflow"></span><h2>Un climat à vous.</h2><p>Une interface personnelle pour piloter les climatiseurs Daikin compatibles depuis votre réseau local.</p><dl><div><dt>Modèle identifié</dt><dd id="about-model">FTXA20A2V1BW</dd></div><div><dt>Connexion</dt><dd>Réseau local de votre maison</dd></div><div><dt>Données enregistrées</dt><dd>La dernière pièce sélectionnée, dans ce navigateur</dd></div></dl><p class="dialog-fineprint">Application indépendante, sans affiliation avec Daikin. Les commandes sont envoyées uniquement lors de vos actions.</p></dialog>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
